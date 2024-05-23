@@ -1,0 +1,5 @@
+pytest
+python-dateutil
+python-dotenv
+pydantic
+pydantic-settings

@@ -2,6 +2,20 @@ version: '3.7'
 
 services:
 
+  # Settings for devcontainer
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        BASIS: mcr.microsoft.com/devcontainers/python
+        VARIANT: 1-3.12-bullseye
+    user: vscode
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      # This is where VS Code should expect to find your project's source code and the value of "workspaceFolder" in .devcontainer/devcontainer.json
+      - ..:/workspace:cached
+
   # The 'setup' service runs a one-off script which initializes users inside
   # Elasticsearch — such as 'logstash_internal' and 'kibana_system' — with the
   # values of the passwords defined in the '.env' file. It also creates the
